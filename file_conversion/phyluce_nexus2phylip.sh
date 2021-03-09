@@ -1,0 +1,20 @@
+#!/bin/bash
+
+source activate phyluce
+
+cd /Volumes/Brumfield_Lab_Drive/data/2_phasing/2_complete-taxon-set/
+
+
+for species in conirostrum_bicolor conirostrum_margaritae cranioleuca_vulpecula dendroplex_kienerii elaenia_pelzelni furnarius_minor furnarius_minor_full knipolegus_orenocensis leucippus_chlorocercus mazaria_propinqua myrmoborus_lugubris myrmochanes_hemileucus myrmotherula_assimilis myrmotherula_klagesi ochthornis_littoralis serpophaga_hypoleuca stigmatura_napensis stigmatura_napensis_full thamnophilus Campephilus_melanoleucos Campephilus_rubricollis Cantorchilus_leucotis Celeus_flavus Celeus_grammicus Crypturellus_undulatus Crypturellus_variegatus Formicarius_analis Formicarius_colma Glaucidium_brasilianum Glaucidium_hardyi Hylophylax_naevia Hylophylax_punctulata Megascops_choliba Megascops_watsonii Monasa_morphoeus Monasa_nigrifrons Myrmeciza_fortis Myrmeciza_hyperythra Myrmoborus_leucophrys Myrmoborus_myotherinus Phaethornis_bourcieri Phaethornis_hispidus Pheugopedius_coraya Piaya_cayana Piaya_melanogaster Pipra_erythrocephala Pipra_filicauda Saltator_coerulescens Saltator_grossus Schiffornis_major Schiffornis_turdina Synallaxis_gujanensis Synallaxis_rutilans Tachyphonus_cristatus Tachyphonus_luctuosus Trogon_collaris Trogon_rufus Xiphorhynchus_elegans Xiphorhynchus_obsoletus ; do 
+
+	phyluce_align_convert_one_align_to_another \
+	--alignments 1_cleaned_alignments-nexus-no_outgroups/${species}-phased-mafft-nexus-untrimmed-complete-clean/ \
+	--output 1_cleaned_alignments-phylip-no_outgroups/${species}-phased-mafft-phylip-untrimmed-complete-clean/ \
+	--input-format nexus \
+	--output-format phylip-relaxed \
+	--cores 8 
+
+done
+
+source deactivate phyluce
+
