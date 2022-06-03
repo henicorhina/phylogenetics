@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#source activate phyluce
+
+cd /Volumes/Brumfield_Lab_Drive/data/1_analysis/vcf_files_final_all_snps/
+
+for species in conirostrum_bicolor_full conirostrum_bicolor conirostrum_margaritae cranioleuca_vulpecula dendroplex_kienerii elaenia_pelzelni furnarius_minor furnarius_minor_full myrmochanes_hemileucus knipolegus_orenocensis leucippus_chlorocercus serpophaga_hypoleuca mazaria_propinqua myrmoborus_lugubris myrmotherula_assimilis myrmotherula_klagesi ochthornis_littoralis stigmatura_napensis thamnophilus thamnophilus_cryptoleucus thamnophilus_nigrocinereus Campephilus_melanoleucos Campephilus_rubricollis Cantorchilus_leucotis Celeus_flavus Celeus_grammicus Crypturellus_undulatus Crypturellus_variegatus Formicarius_analis Formicarius_colma Glaucidium_brasilianum Glaucidium_hardyi Hylophylax_naevia Hylophylax_punctulata Megascops_choliba Megascops_watsonii Monasa_morphoeus Monasa_nigrifrons Myrmeciza_fortis Myrmeciza_hyperythra Myrmoborus_leucophrys Myrmoborus_myotherinus Phaethornis_bourcieri Phaethornis_hispidus Pheugopedius_coraya Piaya_cayana Piaya_melanogaster Pipra_erythrocephala Pipra_filicauda Saltator_coerulescens Saltator_grossus Schiffornis_major Schiffornis_turdina Synallaxis_gujanensis Synallaxis_rutilans Tachyphonus_cristatus Tachyphonus_luctuosus Trogon_collaris Trogon_rufus Xiphorhynchus_elegans Xiphorhynchus_obsoletus ; do 
+
+	/Users/mharvey/src/bcftools/bcftools \
+		query -l \
+		${species}_SNPs_phased_rmIndels_75_QC_DP.recode.vcf \
+		> /Volumes/Brumfield_Lab_Drive/data/1_analysis/sample_names_per_species/${species}_sample_names.txt
+
+	# copy file to distruct plot folder as popfile
+	cp /Volumes/Brumfield_Lab_Drive/data/1_analysis/sample_names_per_species/${species}_sample_names.txt /Volumes/Brumfield_Lab_Drive/data/1_analysis/distruct_plots/${species}/${species}_popfile_by_individual
+
+done
+
+#source deactivate

@@ -1,0 +1,1 @@
+grep -o -E "^>\w+" uce-52.fasta | tr -d ">"
